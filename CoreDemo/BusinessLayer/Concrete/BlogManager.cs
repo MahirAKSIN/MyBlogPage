@@ -48,7 +48,12 @@ namespace BusinessLayer.Concrete
             efBlogRepository.Add(blog);
 
         }
-
+        public List<Blog> GetLast3Blog()
+        {
+            return efBlogRepository.GetAllList().TakeLast(3).ToList();
+                
+        }
+             
         public void BlogDelete(Blog blog)
         {
             efBlogRepository.Delete(blog);
@@ -66,12 +71,17 @@ namespace BusinessLayer.Concrete
 
         public List<Blog> GetByBlogId(int id)
         {
-            return  efBlogRepository.GetAllList(i=>i.BlogId==id);
+            return efBlogRepository.GetAllList(i => i.BlogId == id);
         }
 
         public List<Blog> GetBlogListByWriter(int id)
         {
-        return    efBlogRepository.GetAllList(x => x.WriterId == id);
+            return efBlogRepository.GetAllList(x => x.WriterId == id);
+        }
+
+        public List<Blog> GetBlogListWithComment()
+        {
+            return efBlogRepository.GetListWithComment();
         }
     }
 }
